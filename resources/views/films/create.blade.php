@@ -40,7 +40,7 @@ Submit a new movie
          <div class="form-group">
             
             <label for="Plot">Plot</label>           
-            <textarea id="Plot" class="form-control"  placeholder="Plot" type="number" name="plot" rows="10" min="60" max="240">  
+            <textarea id="Plot" class="form-control"  placeholder="Plot" name="plot" rows="10" cols="30">  
 
         </div>
       
