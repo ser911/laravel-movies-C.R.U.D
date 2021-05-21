@@ -67,9 +67,11 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Film $film)
     {
-        //
+       
+
+        return view('films.show', ['film' => $film]);
     }
 
     /**
@@ -78,9 +80,9 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Film $film)
     {
-        //
+        return view('films.edit', ['film'=> $film]);
     }
 
     /**
@@ -90,9 +92,26 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Film $film)
     {
-        //
+         //validation
+
+        $rules = [
+        'Title' => 'required|string|max:50',
+        'author' => 'required|string|max:50',
+        'genre' => 'required|string|max:50',
+        'length' => 'required|numeric|min:60|max:240'
+        ];
+        
+        $request->validate($rules);
+
+        //submission
+        
+       $film->update($request->all());
+
+       //return
+
+       return redirect()->route('films.index');
     }
 
     /**
@@ -101,8 +120,14 @@ class FilmController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Film $film)
     {
-        //
+        //deletion
+
+        $film ->delete();
+        
+        //return
+
+        return redirect()->route('films.index');
     }
 }

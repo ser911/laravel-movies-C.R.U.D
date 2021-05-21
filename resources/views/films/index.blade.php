@@ -8,60 +8,64 @@ Films database
 @section('content')
 <style>
   
-    ul li{
-        list-style-type: none;
-    }
-  h3, ul{
-      text-align: center;
+   .blue-shades-table{
+       background-color:#cffffe;
+       color:#1a1a2e;
+       box-shadow: 5px 10px 18px #1a1a2e;
+       padding: 40px;
+   }
+
+   .t_head{
+       color: #ee6f57;
+   }
+  .space{
+      width: 10%;
+  }
+  table td{
+      
   }
 </style>
 
-    <div class="overview d-flex">
 
-    
-<div class="db-title">
-                <h3>Title</h3>
-                @foreach ($films as $film)
-                <ul>
-                    
-                    <li>{{ $film->Title }}</li>
-                    
-                </ul>
-                @endforeach
-            </div>
-            <div class="db-author">
-                <h3>Author</h3>
-                @foreach ($films as $film)
-                <ul>
-                    
-                    <li>{{ $film->author}}</li>
-                    
-                </ul>
-                @endforeach
+<table class="blue-shades-table">
+
+<thead class="t_head">
+    <tr>
+<th>Title</th>
+<th>Director</th>
+<th>Genre</th>
+<th>Length</th>
+<th>Actions</th>
+</tr>
+</thead>
+
+<tbody>
+
+@foreach ($films as $film)
+<tr>
+    <td>{{$film->Title}}</td>
+    <td>{{$film->author}}</td>
+    <td>{{$film->genre}}</td>
+    <td>{{$film->length}} min</td>
+    <td class="space">
+        <a href="{{route('films.show', ['film'=> $film ->id])}}"><button type="button" class="btn btn-info">Read plot</button></a>
+        <a href="{{route('films.edit', [ 'film' => $film->id ])}}"><button type="button" class="btn btn-success mb-1 mt-1">Edit</button></a>
+<form action="{{route('films.destroy', ['film'=>$film ->id])}}" method="POST">
+@csrf
+@method('DELETE')
+<button type="submit" class="btn btn-danger">Delete</button>
+</form>
+    </td>
+</tr>
 
 
-            </div>
-            <div class="db-genre">
-        <h3>Genre</h3>
-                @foreach ($films as $film)
-                <ul>
-                    
-                    <li>{{ $film->genre}}</li>
-                    
-                </ul>
-                @endforeach
 
-            </div>
-            <div class="db-length">
-                 <h3>Length</h3>
-                @foreach ($films as $film)
-                <ul>
-                    
-                    <li>{{ $film->length}} min</li>
-                    
-                </ul>
-                @endforeach
-            </div>
 
-</div>
+@endforeach
+
+</tbody>
+</table>
+<a href="{{route('films.create')}}"><button type="button" class="btn btn-success mt-5">Submit a new movie</button></a>
+
+  
 @endsection
