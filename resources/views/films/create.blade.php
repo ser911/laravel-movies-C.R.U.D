@@ -21,8 +21,8 @@ Submit a new movie
         </div>
         <div class="form-group">
              
-            <label for="Author">Author</label>
-            <input id="Author" class="form-control" placeholder="Author" type="text" name="author" value="{{old('author')}}">
+            <label for="Author">Film-director</label>
+            <input id="Author" class="form-control" placeholder="Film-director" type="text" name="author" value="{{old('author')}}">
 
         </div>
         <div class="form-group">
@@ -37,10 +37,10 @@ Submit a new movie
             <input id="Length" class="form-control" type="number" name="length" min="60" max="240" value="{{old('length')}}">  
 
         </div>
-           <div class="form-group">
+         <div class="form-group">
             
             <label for="Plot">Plot</label>           
-            <input id="Plot" class="form-control"  placeholder="Plot" type="text" name="plot" value="{{old('plot')}}">  
+            <textarea id="Plot" class="form-control"  placeholder="Plot" type="number" name="plot" rows="10" min="60" max="240">  
 
         </div>
       
